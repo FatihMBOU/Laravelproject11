@@ -1,70 +1,30 @@
 <?php
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+use App\Models\Job;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
+
+
+// Home route
 Route::get('/', function () {
     return view('home');
 });
 
-
-Route::get('/jobs', function () {
+// Jobs listing route
+Route::get('/jobs', function (){
     return view('jobs', [
-        'jobs' => [
-            [
-                'id' => 1,
-                'title' => 'Director',
-                'salary' => '$40000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Programmer',
-                'salary' => '$10000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Teacher',
-                'salary' => '$40000'
-            ]
-        ]
-        
+        'jobs' => Job::all()
     ]);
 });
 
-Route::get('/jobs{id}', function ($id) {
-    $jobs = [
-            [
-                'id' => 1,
-                'title' => 'Director',
-                'salary' => '$40000'
-            ],
-            [
-                'id' => 2,
-                'title' => 'Programmer',
-                'salary' => '$10000'
-            ],
-            [
-                'id' => 3,
-                'title' => 'Teacher',
-                'salary' => '$40000'
-            ]
-            ];
-
-           $job = Arr::first(@jobs, fn($job) => $job['id'] == $id);
-
+// Specific job details route (corrected)
+Route::get('/jobs/{id}', function ($id){
+    $job = Job::find($id);
+    
     return view('job', ['job' => $job]);
 });
 
+// Contact page route
 Route::get('/contact', function () {
     return view('contact');
 });
