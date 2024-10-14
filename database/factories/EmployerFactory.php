@@ -3,9 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Employer;
 
-class JobFactory extends Factory
+class EmployerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,9 +14,7 @@ class JobFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->jobTitle(),
-            'salary' => '$50,000',
-            'employer_id' => Employer::factory() // Automatically create an Employer when creating a Job
+            'name' => $this->faker->company(), // Corrected from faker() to $this->faker
         ];
     }
 }
