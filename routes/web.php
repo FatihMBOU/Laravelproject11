@@ -12,7 +12,7 @@ Route::get('/', function () {
 
 // Jobs listing route
 Route::get('/jobs', function (){
-    $jobs = Job::with('employer')->get();
+    $jobs = Job::with('employer')->cursorPaginate(3);
 
     return view('jobs', [
         'jobs' => $jobs
