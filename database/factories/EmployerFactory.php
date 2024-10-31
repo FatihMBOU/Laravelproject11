@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EmployerFactory extends Factory
@@ -14,7 +15,8 @@ class EmployerFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company(), // Corrected from faker() to $this->faker
+           'name' => $this->faker->company(),  // Gebruik hier 'faker' in plaats van 'fake'
+            'user_id' => User::factory()
         ];
     }
 }
